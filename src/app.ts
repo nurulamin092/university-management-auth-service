@@ -1,6 +1,7 @@
-import express, { Application, Request, Response } from 'express'
+import express, { Application } from 'express'
 import cors from 'cors'
 import usersRoute from './app/modules/user/user.route'
+import globalErrorHandler from './app/middlewares/globarErrorHandler'
 const app: Application = express()
 
 app.use(cors())
@@ -13,8 +14,13 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/v1/user/', usersRoute)
 
-app.get('/', async (req: Request, res: Response) => {
-  res.send('Working Successfully')
-})
+// testing
+// app.get('/', (req: Request, res: Response, next: NextFunction) => {
+//   // res.send('Working Successfully')
+//   // throw new ApiError(400, 'ore re error khaisi')
+//   next('ore re error khaisi')
+// })
+
+app.use(globalErrorHandler)
 
 export default app
