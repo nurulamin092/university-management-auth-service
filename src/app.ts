@@ -1,7 +1,10 @@
+// import express, { Application, NextFunction, Request, Response } from 'express'
 import express, { Application } from 'express'
 import cors from 'cors'
+
 import globalErrorHandler from './app/middleware/globalErrorHandler'
 import { UserRoutes } from './app/modules/user/user.route'
+// import ApiError from './errors/ApiErrors'
 // import ApiError from './errors/ApiErrors'
 const app: Application = express()
 
@@ -16,11 +19,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/v1/user/', UserRoutes)
 
 //testing
-// app.get('/', async (req: Request, res: Response, next: NextFunction) => {
-//   // res.send('Working Successfully')
-//   // throw new ApiError(400, 'ore re error khaisi')
-//   // next('ore re error khaisi')
-//   Promise.reject(new Error('UnHandle Promise Rejection'))
+// app.use('/', async (req: Request, res: Response, next: NextFunction) => {
+//   throw new Error('Testing error log')
 // })
 
 app.use(globalErrorHandler)

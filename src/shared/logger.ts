@@ -7,9 +7,9 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
   const date = new Date(timestamp)
   const hour = date.getHours()
   const minutes = date.getMinutes()
-  const second = date.getSeconds()
+  const seconds = date.getSeconds()
 
-  return `${date.toDateString()} ${hour} ${minutes} ${second}} [${label}] ${level}: ${message}`
+  return `${date.toDateString()} ${hour}:${minutes}:${seconds} } [${label}] ${level}: ${message}`
 })
 
 const logger = createLogger({
@@ -48,8 +48,8 @@ const errorLogger = createLogger({
       label: 'PH!',
     }),
     timestamp(),
-    myFormat,
-    prettyPrint()
+    myFormat
+    // prettyPrint()
   ),
   transports: [
     new transports.Console(),
@@ -59,7 +59,7 @@ const errorLogger = createLogger({
         'logs',
         'winston',
         'errors',
-        'phu-%DATE%-errors'
+        'phu-%DATE%-error.log'
       ),
       datePattern: 'YYYY-DD-MM-HH',
       zippedArchive: true,
