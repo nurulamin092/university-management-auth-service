@@ -11,7 +11,7 @@ router.post(
   AcademicFacultyController.createAcademicFaculty
 );
 router.get('/:id', AcademicFacultyController.getSingleFaculty);
-router.get('/', AcademicFacultyController.getAcademicFaculty);
+router.get('/', AcademicFacultyController.getAllFaculties);
 router.patch(
   '/:id',
   validateRequest(AcademicFacultyValidation.updateFacultyZodSchema),
